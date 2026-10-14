@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  sourcevault:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sourcevault-app
+    ports:
+      - "8088:10000"
+    environment:
+      - PORT=10000
+      - SOURCEVAULT_SECURITY_ALLOW_LOCAL=false
+    volumes:
+      - sourcevault-data:/app/data
+      - sourcevault-output:/app/output/archives
+    restart: unless-stopped
+
+volumes:
+  sourcevault-data:
+  sourcevault-output:

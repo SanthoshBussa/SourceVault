@@ -1,0 +1,18 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: archive-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+sourcevault:
+  archive:
+    output-dir: "./output/archives"
+    temp-dir: "./data/temp-staging"
+    retention-days: 7

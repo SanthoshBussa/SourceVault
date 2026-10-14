@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+sourcevault:
+  services:
+    analysis-url: "http://localhost:8081"
+    collection-url: "http://localhost:8082"
+    archive-url: "http://localhost:8083"
+    job-url: "http://localhost:8084"

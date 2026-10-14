@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SourceVault Collector</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      width: 360px;
+      margin: 0;
+      padding: 16px;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 15px;
+      color: #1e1b4b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .badge-connected {
+      background-color: #dcfce7;
+      color: #15803d;
+    }
+    .badge-disconnected {
+      background-color: #fee2e2;
+      color: #b91c1c;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .val {
+      font-size: 13px;
+      color: #0f172a;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+    .btn {
+      width: 100%;
+      background-color: #4338ca;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background-color 0.15s;
+    }
+    .btn:hover {
+      background-color: #3730a3;
+    }
+    .btn-secondary {
+      background-color: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+    }
+    .btn-secondary:hover {
+      background-color: #e2e8f0;
+    }
+    .resource-list {
+      max-height: 140px;
+      overflow-y: auto;
+      font-size: 11px;
+      margin-top: 8px;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 6px;
+    }
+    .res-item {
+      padding: 3px 0;
+      display: flex;
+      justify-content: space-between;
+      color: #475569;
+    }
+    .res-type {
+      font-weight: 600;
+      color: #4338ca;
+    }
+    .config-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 8px;
+      font-size: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+    .msg {
+      font-size: 11px;
+      margin-top: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+      SourceVault
+    </div>
+    <div id="statusBadge" class="badge badge-disconnected">Checking...</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Backend Endpoint</div>
+    <input type="text" id="serverUrl" class="config-input" value="http://localhost:8080" />
+    <button id="btnCheckHealth" class="btn btn-secondary" style="margin-top: 6px;">Test Connection</button>
+  </div>
+
+  <div class="card">
+    <div class="label">Active Tab</div>
+    <div id="tabTitle" class="val" style="font-weight: 600;">Detecting...</div>
+    <div id="tabUrl" class="val" style="font-size: 11px; color: #64748b;">-</div>
+    <button id="btnInspect" class="btn" style="margin-top: 10px;">Inspect Tab Resources</button>
+  </div>
+
+  <div id="resultsCard" class="card" style="display: none;">
+    <div class="label" id="resultsCount">Found 0 Resources</div>
+    <div id="resourceList" class="resource-list"></div>
+    <button id="btnSync" class="btn" style="background-color: #059669; margin-top: 10px;">Sync to SourceVault</button>
+  </div>
+
+  <div id="msgBox" class="msg"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

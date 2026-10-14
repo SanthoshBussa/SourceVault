@@ -1,0 +1,41 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: sourcevault-server
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    url: jdbc:h2:file:./data/sourcevault_db;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+  h2:
+    console:
+      enabled: false
+
+  web:
+    resources:
+      static-locations: classpath:/static/,classpath:/public/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+sourcevault:
+  collection:
+    storage-dir: "./data/collected-resources"
+  archive:
+    output-dir: "./output/archives"
+    temp-dir: "./data/temp-staging"

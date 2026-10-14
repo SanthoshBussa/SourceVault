@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: website-analysis-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+sourcevault:
+  analysis:
+    connection-timeout-ms: 10000
+    read-timeout-ms: 15000
+    user-agent: "SourceVault-Collector/1.0 (+https://sourcevault.local)"
+    max-html-size-bytes: 10485760 # 10MB

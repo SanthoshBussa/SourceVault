@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: sourcevault
+    runtime: docker
+    plan: free
+    region: oregon
+    healthCheckPath: /actuator/health
+    disk:
+      name: sourcevault-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: SOURCEVAULT_SECURITY_ALLOW_LOCAL
+        value: "false"
