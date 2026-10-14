@@ -49,3 +49,6 @@ Desktop.ini
 
 # Antigravity
 .gemini/
+
+# Binaries
+cloudflared.exe
