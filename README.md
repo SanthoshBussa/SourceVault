@@ -1,5 +1,7 @@
 # SourceVault — Chrome Source Collector & ZIP Downloader
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/SanthoshBussa/SourceVault)
+
 > **Enterprise website resource collector, source-map reconstructor, and ZIP packaging engine built with Java 21, Spring Boot 3 microservices, and React.**
 
 ---
