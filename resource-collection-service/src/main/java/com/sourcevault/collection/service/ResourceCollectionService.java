@@ -194,6 +194,9 @@ public class ResourceCollectionService {
         dto.setJobId(runtime.getJobId());
         dto.setOriginalUrl(url);
         dto.setCreatedAt(Instant.now());
+        dto.setRetrievalMethod(RetrievalMethod.HTTP_PUBLIC);
+        dto.setResourceType(classifyType(url, null));
+        dto.setStatus(ResourceStatus.PENDING);
 
         URI uri;
         try {

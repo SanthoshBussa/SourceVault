@@ -26,35 +26,32 @@ public class CollectedResourceEntity {
     private String originalUrl;
 
     @Column(nullable = false, length = 512)
-    private String resourceOrigin;
+    private String resourceOrigin = "";
 
     @Column(nullable = false, length = 1024)
-    private String resourcePath;
+    private String resourcePath = "/";
 
     @Column(nullable = false, length = 256)
-    private String fileName;
+    private String fileName = "unnamed";
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ResourceType resourceType;
+    private ResourceType resourceType = ResourceType.OTHER;
 
     @Column(length = 128)
     private String contentType;
 
     private Integer httpStatus;
 
-    private Long fileSize;
+    private Long fileSize = 0L;
 
     @Column(length = 128)
     private String checksum;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private RetrievalMethod retrievalMethod;
+    private RetrievalMethod retrievalMethod = RetrievalMethod.HTTP_PUBLIC;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ResourceStatus status;
+    private ResourceStatus status = ResourceStatus.PENDING;
 
     @Column(length = 1024)
     private String failureReason;

@@ -9,6 +9,7 @@ import com.sourcevault.common.model.CollectionMode;
 import com.sourcevault.common.model.JobStatus;
 import com.sourcevault.common.model.ResourceStatus;
 import com.sourcevault.common.model.ResourceType;
+import com.sourcevault.common.model.RetrievalMethod;
 import com.sourcevault.common.security.SsrfValidator;
 import com.sourcevault.job.entity.ArchiveRecordEntity;
 import com.sourcevault.job.entity.CollectedResourceEntity;
@@ -228,8 +229,8 @@ public class JobService {
             res.setHttpStatus(dto.getHttpStatus());
             res.setFileSize(dto.getFileSize() != null ? dto.getFileSize() : 0L);
             res.setChecksum(dto.getChecksum());
-            res.setRetrievalMethod(dto.getRetrievalMethod());
-            res.setStatus(dto.getStatus());
+            res.setRetrievalMethod(dto.getRetrievalMethod() != null ? dto.getRetrievalMethod() : RetrievalMethod.HTTP_PUBLIC);
+            res.setStatus(dto.getStatus() != null ? dto.getStatus() : ResourceStatus.FAILED);
             res.setFailureReason(dto.getFailureReason());
             res.setReconstructed(dto.isReconstructed());
             res.setCreatedAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : Instant.now());

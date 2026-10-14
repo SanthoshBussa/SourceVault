@@ -53,6 +53,12 @@ public class SourceMapReconstructor {
         }
 
         try {
+            String snippet = new String(sourceMapBytes, 0, Math.min(sourceMapBytes.length, 32), StandardCharsets.UTF_8).trim();
+            if (!snippet.startsWith("{")) {
+                log.debug("Skipping non-JSON source map data for {}: starts with '{}'", originalMapUrl, snippet.length() > 15 ? snippet.substring(0, 15) : snippet);
+                return new ReconstructionResult(0, items);
+            }
+
             JsonNode root = objectMapper.readTree(sourceMapBytes);
             JsonNode sourcesNode = root.get("sources");
             JsonNode sourcesContentNode = root.get("sourcesContent");
