@@ -1,0 +1,14 @@
+target/
+node_modules/
+frontend/node_modules/
+frontend/dist/
+data/
+output/
+sourcevault-output/
+*.log
+*.tmp
+*.h2.db
+.git/
+.gemini/
+.idea/
+.vscode/
